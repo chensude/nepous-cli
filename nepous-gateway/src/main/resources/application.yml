@@ -1,0 +1,49 @@
+server:
+  port: 8040
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: after_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=test
+          filter:
+            - PreLog=a,b
+            #- TimeBetween=上午9:00,下午2:00
+        - id: nepous-provider-uac
+          uri: lb://nepous-provider-uac
+          predicates:
+            - Path=/uac/**
+          filters:
+            - StripPrefix=1
+        - id: nepous-provider-tpc
+          uri: lb://nepous-provider-tpc
+          predicates:
+            - Path=/tpc/**
+          filters:
+            - StripPrefix=1
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: 4637c238-360c-4888-a9de-27dab15a89aa
+        group: dev
+
+  zipkin:
+    base-url: http://localhost:9411/
+    discoveryClientEnabled: false
+    locator:
+      discovery:
+        enabled: true
+  sleuth:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  endpoint:
+    health:
+      show-details: always

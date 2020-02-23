@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.nepous.provider.mapper.UacActionMapper">
+
+    <sql id="Base_Column_List" >
+        ${alias}.id, ${alias}.version, ${alias}.url, ${alias}.action_name, ${alias}.action_code, ${alias}.status, ${alias}.remark,
+        ${alias}.menu_id, ${alias}.creator, ${alias}.creator_id, ${alias}.created_time, ${alias}.last_operator, ${alias}.last_operator_id, ${alias}.update_time
+    </sql>
+    <select id="getOwnUacActionListByUserId" resultType="com.nepous.provider.model.domain.UacAction">
+        select
+        <include refid="Base_Column_List">
+            <property name="alias" value="a"></property>
+        </include>
+        from pc_uac_role_action ra INNER JOIN pc_uac_role r on ra.role_id = r.id
+        INNER JOIN pc_uac_role_user ru on ru.role_id = r.id
+        INNER JOIN pc_uac_user u on ru.user_id = u.id
+        INNER JOIN pc_uac_action a on ra.action_id = a.id
+        where u.id = #{userId}
+    </select>
+</mapper>

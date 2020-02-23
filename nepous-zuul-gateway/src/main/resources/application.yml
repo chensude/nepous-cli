@@ -1,0 +1,17 @@
+server:
+  port: 8050
+zuul:
+  routes:
+    uac-route:
+      path: /uac/**
+      sensitiveHeaders:
+      #      strip-prefix: false
+      service-id: nepous-provider-uac
+      ribbon:
+        eager-load:
+          enabled: true
+        MaxAutoRetries: 1
+        MaxAutoRetriesNextServer: 2
+        OkToRetryOnAllOperations: false
+        ConnectTimeout: 10000
+        ReadTimeout: 10000

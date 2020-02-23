@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: 4637c238-360c-4888-a9de-27dab15a89aa
+  application:
+    name: springboot-admin

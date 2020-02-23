@@ -1,0 +1,54 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/paascloud_tpc?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  application:
+    name: nepous-provider-tpc
+  cloud:
+    nacos:
+      discovery:
+        namespace: 4637c238-360c-4888-a9de-27dab15a89aa
+        server-addr: localhost:8848
+        group: test
+  zipkin:
+    base-url: http://localhost:9411/
+    discoveryClientEnabled: false
+    locator:
+      discovery:
+        enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+server:
+  port: 8090
+security:
+  oauth2:
+    client:
+      clientId: nepous-provider-tpc
+      clientSecret: nepousTpcSecrect
+    resource:
+      token-info-uri: http://localhost:8888/uac/oauth/check_token
+
+nepous:
+  oauth2:
+    client:
+      id: nepous-provider-tpc
+      clientId: nepous-provider-tpc
+      clientSecret: nepousTpcSecrect
+      accessTokenUrl: http://localhost:8888/uac/oauth/token
+      clientAuthenticationScheme: header
+logging:
+  level:
+    com.nepous.TpcFeignClient: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  endpoint:
+    health:
+      show-details: always

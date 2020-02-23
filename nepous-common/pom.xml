@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>nepous-cli</artifactId>
+        <groupId>com.nepous</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.nepous</groupId>
+    <artifactId>nepous-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>nepous-secuirty-core</module>
+        <module>nepous-security-app</module>
+        <module>nepous-common-core</module>
+        <module>nepous-security-feign</module>
+    </modules>
+
+
+</project>

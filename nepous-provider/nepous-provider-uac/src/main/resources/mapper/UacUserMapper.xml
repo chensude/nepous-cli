@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.nepous.provider.mapper.UacUserMapper">
+
+    <sql id="Base_Column_List">
+        u.id as id,
+        u.version as version,
+        u.login_name as loginName,
+        u.login_pwd as loginPwd,
+        u.salt as salt,
+        u.user_code as userCode,
+        u.user_name as userName,
+        u.mobile_no as mobileNo,
+        u.email as email,
+        u.status as status,
+        u.user_source as userSource,
+        u.type as type,
+        u.last_login_ip as lastLoginIp,
+        u.remark as remark,
+        u.last_login_time as lastLoginTime,
+        u.is_changed_pwd as isChangedPwd,
+        u.pwd_error_count as pwdErrorCount,
+        u.pwd_error_time as pwdErrorTime,
+        u.creator as creator,
+        u.creator_id as creatorId,
+        u.created_time as createdTime,
+        u.last_operator as lastOperator,
+        u.last_operator_id as lastOperatorId,
+        u.update_time as updateTime,
+        u.last_login_location as lastLoginLocation
+    </sql>
+    <!--<select id="getUserById" resultType="com.nepous.security.model.domain.UacUser">-->
+        <!--select user_name from pc_uac_user ${ew.customSqlSegment}-->
+    <!--</select>-->
+
+
+    <!--<select id="selectMyUserPage" resultType="com.nepous.security.model.domain.UacUser">-->
+        <!--select * from pc_uac_user ${ew.customSqlSegment}-->
+    <!--</select>-->
+
+    <select id="selectUserInfoByUserId" resultType="com.nepous.provider.model.domain.UacUser">
+        SELECT
+        <include refid="Base_Column_List"/>,
+        g.id as groupId,
+        g.group_name as groupName
+        FROM
+        pc_uac_user u
+        LEFT JOIN pc_uac_group_user gu on u.id = gu.user_id
+        LEFT JOIN pc_uac_group g on gu.group_id = g.id
+        WHERE u.id = #{userId}
+    </select>
+</mapper>
