@@ -11,7 +11,7 @@
 
     <groupId>com.nepous</groupId>
     <artifactId>nepous-security-app</artifactId>
-    <packaging>pom</packaging>
+<!--    <packaging>pom</packaging>-->
 
     <dependencies>
         <dependency>
