@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 
 public class LogConfigration {
 
+    
     @Bean
     public Logger.Level level() {
         return Logger.Level.FULL;
